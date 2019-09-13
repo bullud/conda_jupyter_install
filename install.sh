@@ -56,8 +56,8 @@ conda install -y -n $ENVNAME  cython matplotlib scikit-image numpy pyyaml scipy 
 conda install -y -n $ENVNAME  cudatoolkit=$CUDA -c pytorch
 conda install -y -n $ENVNAME  opencv=$OPENCV
 conda install -y -n $ENVNAME  ipykernel
-conda install -y -n $ENVNAME  torchvision=$TORCHVISION -c pytorch
-conda install -y -n $ENVNAME  pytorch=$PYTORCH -c pytorch
+conda install -y -n $ENVNAME  pytorch=$PYTORCH torchvision=$TORCHVISION -c pytorch
+#conda install -y -n $ENVNAME  pytorch=$PYTORCH -c pytorch
 
 $HOME/ML/tools/miniconda3/envs/$ENVNAME/bin/python -m ipykernel install --user --name $ENVNAME --display-name "$ENVNAME"
 
@@ -93,7 +93,7 @@ rm env_install/jupyter_notebook_config.new.py
 cp env_install/jupyter.service env_install/jupyter.new.service
 echo "User=`id -u -n`" >> env_install/jupyter.new.service
 echo "Group=`id -g -n`" >> env_install/jupyter.new.service
-echo "ExecStart=/usr/bin/jupyter-notebook --config=$HOME/.jupyter/jupyter_notebook_config.py" >> env_install/jupyter.new.service
+echo "ExecStart=/usr/local/bin/jupyter-notebook --config=$HOME/.jupyter/jupyter_notebook_config.py" >> env_install/jupyter.new.service
 echo "WorkingDirectory=$HOME/jupyter/" >> env_install/jupyter.new.service 
 sudo cp env_install/jupyter.new.service  /etc/systemd/system/jupyter.service
 #sed -i '$d' env_install/jupyter.service
