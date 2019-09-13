@@ -1,0 +1,16 @@
+[Unit]
+Description=JupyterNotebook
+After=syslog.target network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+PIDFile=/run/jupyter.pid
+#User=dli
+#Group=domain users
+Restart=always
+RestartSec=10
+#ExecStart=/usr/bin/jupyter-notebook --config=/home/dli/.jupyter/jupyter_notebook_config.py
+#WorkingDirectory=/home/dli/jupyter/
